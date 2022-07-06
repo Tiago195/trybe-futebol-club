@@ -2,14 +2,10 @@ FROM node:16-alpine
 
 WORKDIR /app-frontend
 
-COPY ./package.json .
+COPY package.json ./
 
 RUN npm i
 
-COPY . .
-
-VOLUME . .
+COPY . ./
 
 CMD [ "npm", "start" ]
-
-EXPOSE 3000
