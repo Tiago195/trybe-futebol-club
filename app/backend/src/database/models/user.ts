@@ -1,7 +1,7 @@
 import { Model, DataTypes, Optional } from 'sequelize';
 import db from '.';
 
-type UserAttributes = {
+export type UserAttributes = {
   id: number,
   username: string,
   role: string,

@@ -6,6 +6,7 @@ class UserController {
   public service: UserService;
   constructor(service: UserService) {
     this.service = service;
+    this.getFromEmailAndPassword = this.getFromEmailAndPassword.bind(this);
   }
 
   async getFromEmailAndPassword(req: Request, res: Response, next: NextFunction) {
