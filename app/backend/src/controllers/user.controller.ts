@@ -16,7 +16,7 @@ class UserController {
 
       const token = jwt.encode(user);
 
-      res.status(200).json({ token });
+      return res.status(200).json({ token });
     } catch (error) {
       next(error);
     }

@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import UserService from '../services/user.service';
 import UserController from '../controllers/user.controller';
+import validLogin from '../middlewares/validLogin';
 
 const router = Router();
 
 const user = new UserController(new UserService());
 
-router.post('/login', user.getFromEmailAndPassword);
+router.post('/login', validLogin, user.getFromEmailAndPassword);
 
 export default router;

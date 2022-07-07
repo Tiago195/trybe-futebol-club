@@ -24,13 +24,11 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
+    this.app.use(userRouter);
+    this.app.use(genericError);
   }
 
   public start(PORT: string | number):void {
-    this.app.use(userRouter);
-
-    this.app.use(genericError);
-
     this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
   }
 }
