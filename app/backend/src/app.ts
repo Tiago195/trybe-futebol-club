@@ -1,6 +1,7 @@
 import * as express from 'express';
 import genericError from './middlewares/genericError';
 import userRouter from './routes/user.routes';
+import teamRouter from './routes/team.routes';
 
 class App {
   public app: express.Express;
@@ -25,6 +26,7 @@ class App {
     this.app.use(express.json());
     this.app.use(accessControl);
     this.app.use(userRouter);
+    this.app.use(teamRouter);
     this.app.use(genericError);
   }
 
