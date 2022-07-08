@@ -7,6 +7,12 @@ class TeamService {
 
     return response;
   };
+
+  getById = async (id: number) => {
+    const response = await Team.findByPk(id);
+
+    return response;
+  };
 }
 
 export default TeamService;
