@@ -1,6 +1,7 @@
 import { FindOptions, Identifier } from 'sequelize/types';
 import Users from './Users.mock';
 import Teams from './Teams.mock';
+import Matches from './Matches.mock';
 
 // const mockCreate = (Instance, data) => {
 //   if (!data) {
@@ -65,7 +66,12 @@ export const Team = {
   findByPk: async (id?: Identifier) => mockFindByPk(Teams, id!)
 }
 
+export const Matche = {
+  findAll: async () => mockFindAll(Matches),
+}
+
 export default {
   User,
-  Team
+  Team,
+  Matche
 }
