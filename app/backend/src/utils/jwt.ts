@@ -1,4 +1,5 @@
 import * as jwt from 'jsonwebtoken';
+import { UserAttributes } from '../database/models/user';
 
 const secret = process.env.JWT_SECRET as string;
 
@@ -7,7 +8,7 @@ const jwtConfig: jwt.SignOptions = {
   algorithm: 'HS256',
 };
 
-const encode = (data: any) => jwt.sign({ data }, secret, jwtConfig);
+const encode = (data: Omit<UserAttributes, 'password'>) => jwt.sign({ data }, secret, jwtConfig);
 
 const decode = (token: string) => jwt.decode(token);
 
