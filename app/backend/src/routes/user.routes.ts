@@ -9,4 +9,6 @@ const user = new UserController(new UserService());
 
 router.post('/login', validLogin, user.getFromEmailAndPassword);
 
+router.get('/login/validate', user.loginValidate);
+
 export default router;

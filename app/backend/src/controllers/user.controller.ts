@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { JwtPayload } from 'jsonwebtoken';
 import jwt from '../utils/jwt';
 import UserService from '../services/user.service';
 
@@ -21,6 +22,18 @@ class UserController {
       next(error);
     }
   }
+
+  loginValidate = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { authorization } = req.headers;
+
+      const { data } = jwt.decode(authorization as string) as JwtPayload;
+
+      res.status(200).json({ role: data.role });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default UserController;
