@@ -18,7 +18,7 @@ describe('Testes rota login', () => {
     let users: Response;
     
     before( async () => {
-      sinon.stub(User, 'findAll').callsFake(userModel.findOne);
+      sinon.stub(User, 'findOne').callsFake(userModel.findOne);
       users = await chai.request(app).post('/login').send({
         email: 'admin@admin.com',
         password: 'secret_admin'
@@ -26,7 +26,7 @@ describe('Testes rota login', () => {
     })
 
     after(() => {
-      (User.findAll as sinon.SinonStub).restore()
+      (User.findOne as sinon.SinonStub).restore()
     })
     it('verifica se o status da requisição é 200', async () => {
       // console.log(users)
@@ -42,7 +42,7 @@ describe('Testes rota login', () => {
     let users: Response;
     
     before( async () => {
-      sinon.stub(User, 'findAll').callsFake(userModel.findOne);
+      sinon.stub(User, 'findOne').callsFake(userModel.findOne);
       users = await chai.request(app).post('/login').send({
         email: 'admin@admin.com',
         password: 'senha errada'
@@ -50,7 +50,7 @@ describe('Testes rota login', () => {
     })
 
     after(() => {
-      (User.findAll as sinon.SinonStub).restore()
+      (User.findOne as sinon.SinonStub).restore()
     })
     it('verifica se o status da requisição é 200', async () => {
       // console.log(users)
@@ -62,7 +62,7 @@ describe('Testes rota login', () => {
     })
   })
 
-  describe('POST login/validate caso de sucesso', () => {
+  describe('GET login/validate caso de sucesso', () => {
     let users: Response;
     
     before( async () => {

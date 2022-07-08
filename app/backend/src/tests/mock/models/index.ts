@@ -1,5 +1,6 @@
 import { FindOptions } from 'sequelize/types';
 import Users from './Users.mock';
+import Teams from './Teams.mock';
 
 // const mockCreate = (Instance, data) => {
 //   if (!data) {
@@ -46,10 +47,20 @@ const mockFindOne = (Instance: any, where: any) => {
   return result;
 };
 
+const mockFindAll = (Instance: any) => {
+  return Instance
+}
+
 export const User = {
   findOne: async (findOptions?: FindOptions) => mockFindOne(Users, findOptions!.where)
 }
 
+export const Team = {
+  // findOne: async (findOptions?: FindOptions) => mockFindOne(Users, findOptions!.where)
+  findAll: async () => mockFindAll(Teams)
+}
+
 export default {
-  User
+  User,
+  Team
 }
