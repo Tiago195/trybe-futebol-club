@@ -1,4 +1,4 @@
-import { FindOptions } from 'sequelize/types';
+import { FindOptions, Identifier } from 'sequelize/types';
 import Users from './Users.mock';
 import Teams from './Teams.mock';
 
@@ -51,13 +51,18 @@ const mockFindAll = (Instance: any) => {
   return Instance
 }
 
+const mockFindByPk = (Instance: any, id: Identifier) => {
+  return Instance.find((item: any) => item.id === id )
+}
+
 export const User = {
   findOne: async (findOptions?: FindOptions) => mockFindOne(Users, findOptions!.where)
 }
 
 export const Team = {
   // findOne: async (findOptions?: FindOptions) => mockFindOne(Users, findOptions!.where)
-  findAll: async () => mockFindAll(Teams)
+  findAll: async () => mockFindAll(Teams),
+  findByPk: async (id?: Identifier) => mockFindByPk(Teams, id!)
 }
 
 export default {

@@ -36,4 +36,26 @@ describe('Testes rota Teams', () => {
     })
 
   })
+
+  describe('GET teams/:id caso de sucesso', () => {
+    let teams: Response;
+
+    before(async () => {
+      sinon.stub(Team, 'findByPk').callsFake(TeamMock.findByPk)
+      teams = await chai.request(app).get('/teams/1')
+    })
+
+    after(() => {
+      (Team.findByPk as sinon.SinonStub).restore()
+    })
+
+    it('verifica se o status da requisição é 200', async () => {
+      expect(teams).to.have.status(200);
+    })
+
+    it('verifica se o status da requisição é 200', async () => {
+      expect(teams.body).to.have.property('id');
+      expect(teams.body).to.have.property('teamName');
+    })
+  })
 })
