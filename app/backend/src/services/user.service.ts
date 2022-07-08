@@ -6,7 +6,7 @@ class UserService {
   getFromEmailAndPassword = async (email: string, password: string) => {
     const response = await User.findOne({ where: { email } });
 
-    if(!response) throw generateErrorObj('Incorrect email or password', 401);
+    if (!response) throw generateErrorObj('Incorrect email or password', 401);
 
     const { password: passwordRemoved, ...user } = response?.get() as UserAttributes;
 
