@@ -11,7 +11,7 @@ export type MatchesAttributes = {
   inProgress: number
 };
 
-type MatchesCreationAttributes = Optional<MatchesAttributes, 'id'>;
+export type MatchesCreationAttributes = Optional<MatchesAttributes, 'id' | 'inProgress'>;
 
 class Matches extends Model<MatchesAttributes, MatchesCreationAttributes> {}
 
@@ -36,6 +36,7 @@ Matches.init({
   },
   inProgress: {
     type: DataTypes.INTEGER,
+    defaultValue: true,
   },
 }, {
   timestamps: false,
@@ -52,6 +53,11 @@ Matches.belongsTo(Teams, {
 Matches.belongsTo(Teams, {
   as: 'teamAway',
   foreignKey: 'awayTeam',
+});
+
+Teams.hasMany(Matches, {
+  as: 'homeMatches',
+  foreignKey: 'homeTeam',
 });
 
 export default Matches;

@@ -3,6 +3,7 @@ import genericError from './middlewares/genericError';
 import userRouter from './routes/user.routes';
 import teamRouter from './routes/team.routes';
 import matcheRouter from './routes/matche.routes';
+import leaderboardRouter from './routes/leaderboard.routes';
 
 class App {
   public app: express.Express;
@@ -29,6 +30,7 @@ class App {
     this.app.use(userRouter);
     this.app.use(teamRouter);
     this.app.use(matcheRouter);
+    this.app.use(leaderboardRouter);
     this.app.use(genericError);
   }
 

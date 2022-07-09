@@ -57,7 +57,7 @@ describe('Testes rota login', () => {
       expect(users).to.have.status(401);
     })
 
-    it('verifica se o body da requisição tem chave token', async () => {
+    it('verifica se o body da requisição tem chave message', async () => {
       expect(users.body).to.have.property('message')
     })
   })
@@ -73,7 +73,7 @@ describe('Testes rota login', () => {
       expect(users).to.have.status(200);
     })
 
-    it('verifica se o body da requisição tem chave token', async () => {
+    it('verifica se o body da requisição tem chave role', async () => {
       expect(users.body).to.have.property('role')
     })
   })

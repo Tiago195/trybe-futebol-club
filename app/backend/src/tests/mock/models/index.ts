@@ -1,20 +1,26 @@
-import { FindOptions, Identifier } from 'sequelize/types';
+import { CreateOptions, FindOptions, Identifier } from 'sequelize/types';
 import Users from './Users.mock';
 import Teams from './Teams.mock';
 import Matches from './Matches.mock';
 
-// const mockCreate = (Instance, data) => {
-//   if (!data) {
-//     return;
-//   }
+const mockCreate = (Instance: any, data: any) => {
+  if (!data) {
+    return;
+  }
 
-//   const newData = data;
-//   if (Instance[0].id) {
-//     newData.id = Date.now();
-//   }
-//   Instance.push(newData);
-//   return newData;
-// };
+  const newData = data;
+  if (Instance[0].id) {
+    newData.id = Date.now();
+  }
+
+  if(Instance[0].homeTeamGoals) {
+    newData.inProgress = true
+  }
+  
+  Instance.push(newData);
+  return newData;
+};
+
 class MockUser {
   public result: any
 
@@ -56,6 +62,14 @@ const mockFindByPk = (Instance: any, id: Identifier) => {
   return Instance.find((item: any) => item.id === id )
 }
 
+const mockUpdate = (Instance: any, data: any, where: any) => {
+ const targetIndex = Instance.findIndex((item: any) => item.id === where.id)
+
+  Instance[targetIndex] = {...Instance[targetIndex], ...data}
+  
+  return Instance[targetIndex]
+}
+
 export const User = {
   findOne: async (findOptions?: FindOptions) => mockFindOne(Users, findOptions!.where)
 }
@@ -68,6 +82,8 @@ export const Team = {
 
 export const Matche = {
   findAll: async () => mockFindAll(Matches),
+  create: async (data: any) => mockCreate(Matches, data),
+  update: async (data: any, options: any) => mockUpdate(Matches, data, options)
 }
 
 export default {

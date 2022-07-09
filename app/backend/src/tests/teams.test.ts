@@ -30,7 +30,7 @@ describe('Testes rota Teams', () => {
       expect(teams).to.have.status(200);
     })
 
-    it('verifica se o status da requisição é 200', async () => {
+    it('verifica as chaves do body', async () => {
       expect(teams.body[0]).to.have.property('id');
       expect(teams.body[0]).to.have.property('teamName');
     })
@@ -53,7 +53,7 @@ describe('Testes rota Teams', () => {
       expect(teams).to.have.status(200);
     })
 
-    it('verifica se o status da requisição é 200', async () => {
+    it('verifica as chaves do body', async () => {
       expect(teams.body).to.have.property('id');
       expect(teams.body).to.have.property('teamName');
     })

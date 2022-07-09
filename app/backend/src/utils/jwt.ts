@@ -10,7 +10,7 @@ const jwtConfig: jwt.SignOptions = {
 
 const encode = (data: Omit<UserAttributes, 'password'>) => jwt.sign({ data }, secret, jwtConfig);
 
-const decode = (token: string) => jwt.decode(token);
+const decode = (token: string) => jwt.decode(token) as jwt.JwtPayload;
 
 export default {
   encode,
