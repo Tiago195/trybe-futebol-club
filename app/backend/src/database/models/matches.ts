@@ -60,4 +60,9 @@ Teams.hasMany(Matches, {
   foreignKey: 'homeTeam',
 });
 
+Teams.hasMany(Matches, {
+  as: 'awayMatches',
+  foreignKey: 'awayTeam',
+});
+
 export default Matches;
