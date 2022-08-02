@@ -11,7 +11,7 @@ class UserService {
     const { password: passwordRemoved, ...user } = response?.get() as UserAttributes;
 
     const isPassword = await bc.compare(password, passwordRemoved);
-
+    
     if (!isPassword) throw generateErrorObj('Incorrect email or password', 401);
 
     return user;

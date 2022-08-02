@@ -2,7 +2,7 @@
 import { MatchesAttributes } from '../database/models/matches';
 import { TeamsAttributes } from '../database/models/teams';
 
-export interface TeamWithMatches extends TeamsAttributes{
+export interface TeamWithMatches extends TeamsAttributes {
   homeMatches: MatchesAttributes[]
   awayMatches: MatchesAttributes[]
 }
